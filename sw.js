@@ -1,4 +1,3 @@
-// Eski keshni o'chirib yuboruvchi sw.js
 self.addEventListener('install', (e) => {
     self.skipWaiting();
 });
