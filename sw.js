@@ -1,14 +1,21 @@
+// Eski keshni o'chirib yuboruvchi sw.js
 self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open('qizbiz-store').then((cache) => cache.addAll([
-      './',
-      './index.html'
-    ]))
-  );
+    self.skipWaiting();
+});
+
+self.addEventListener('activate', (e) => {
+    e.waitUntil(
+        caches.keys().then((keyList) => {
+            return Promise.all(keyList.map((key) => {
+                return caches.delete(key);
+            }));
+        })
+    );
+    self.clients.claim();
 });
 
 self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((response) => response || fetch(e.request))
-  );
+    e.respondWith(
+        fetch(e.request).catch(() => caches.match(e.request))
+    );
 });
