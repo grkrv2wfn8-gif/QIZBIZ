@@ -126,3 +126,69 @@ textarea::placeholder {
     max-height: 250px;
     overflow-y: auto;
 }
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QIZBIZ - Ayollar Uchun Biznes Mentor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#831843">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- 1. RO'YXATDAN O'TISH / KIRISH BO'LIMi -->
+        <div id="auth-section" class="main-card">
+            <div class="logo">👑 QIZBIZ</div>
+            <p class="tagline">Tadbirkor ayollar uchun raqamli platforma</p>
+            
+            <div class="input-group" style="margin-top: 20px;">
+                <label for="user-name">Ismingiz:</label>
+                <input type="text" id="user-name" placeholder="Ismingizni kiriting...">
+            </div>
+
+            <div class="input-group">
+                <label for="user-biz">Biznes yo'nalishingiz:</label>
+                <input type="text" id="user-biz" placeholder="Masalan: Tikuvchilik, Qandolatchilik...">
+            </div>
+
+            <button class="action-btn" onclick="registerUser()">Ro'yxatdan o'tish va Boshlash ✨</button>
+        </div>
+
+        <!-- 2. ASOSIY ILOVA BO'LIMI (Ro'yxatdan o'tgandan keyin chiqadi) -->
+        <div id="app-section" class="main-card" style="display: none;">
+            <header class="app-header">
+                <div class="logo-small">👑 QIZBIZ</div>
+                <p id="welcome-msg" class="tagline">Xush kelibsiz!</p>
+            </header>
+
+            <div class="input-group">
+                <label for="user-input">Biznes g'oyangiz yoki savolingizni yozing:</label>
+                <textarea id="user-input" placeholder="Masalan: Uyda shirinliklar biznesini qanday boshlasam bo'ladi? Mijozlarni qanday topaman?"></textarea>
+            </div>
+
+            <button class="action-btn" onclick="askAI()">
+                <span>AI Mentordan Maslahat Olish</span> ✨
+            </button>
+
+            <div class="result-section">
+                <h3>Mentor Javobi:</h3>
+                <div id="ai-result" class="result-box">Savolingizga shu yerda professional maslahat beriladi...</div>
+            </div>
+
+            <button class="logout-btn" onclick="logoutUser()">Chiqish / Qayta ro'yxatdan o'tish</button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
+
